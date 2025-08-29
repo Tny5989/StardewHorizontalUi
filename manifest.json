@@ -6,7 +6,7 @@
   "UniqueID": "Tny5989.HorizontalUi",
   "EntryDll": "HorizontalUi.dll",
   "MinimumApiVersion": "4.0.0",
-  "UpdateKeys": [ "GitHub:Tny5989/StardewHorizontalUi" ]
+  "UpdateKeys": [ "GitHub:Tny5989/StardewHorizontalUi" ],
   "Dependencies": [
     {
       "UniqueID": "spacechase0.GenericModConfigMenu",
