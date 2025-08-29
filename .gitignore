@@ -14,6 +14,10 @@ obj/
 *.userosscache
 *.sln.docstates
 
+# Publish profiles
+*.pubxml
+*.pubxml.user
+
 # NuGet
 *.nupkg
 *.snupkg
