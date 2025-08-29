@@ -1,10 +1,10 @@
 {
   "Name": "Horizontal UI",
   "Author": "Tny5989",
-  "Version": "0.0.1",
+  "Version": "0.0.2",
   "Description": "Horizontal Health and Energy Bars",
   "UniqueID": "Tny5989.HorizontalUi",
   "EntryDll": "HorizontalUi.dll",
   "MinimumApiVersion": "4.0.0",
-  "UpdateKeys": []
+  "UpdateKeys": [ "GitHub:Tny5989/StardewHorizontalUi" ]
 }
