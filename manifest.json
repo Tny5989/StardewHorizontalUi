@@ -1,10 +1,17 @@
 {
   "Name": "Horizontal UI",
   "Author": "Tny5989",
-  "Version": "0.0.2",
+  "Version": "0.0.3",
   "Description": "Horizontal Health and Energy Bars",
   "UniqueID": "Tny5989.HorizontalUi",
   "EntryDll": "HorizontalUi.dll",
   "MinimumApiVersion": "4.0.0",
   "UpdateKeys": [ "GitHub:Tny5989/StardewHorizontalUi" ]
+  "Dependencies": [
+    {
+      "UniqueID": "spacechase0.GenericModConfigMenu",
+      "MinimumVersion": "1.15.0",
+      "IsRequired": false
+    }
+  ]
 }
