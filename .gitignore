@@ -14,22 +14,25 @@ obj/
 *.userosscache
 *.sln.docstates
 
-# NuGet packages
+# NuGet
 *.nupkg
 *.snupkg
 packages/
 project.lock.json
 project.fragment.lock.json
 
-# OS-specific junk
+# OS-specific
 Thumbs.db
 ehthumbs.db
 Desktop.ini
 .DS_Store
 
 # SMAPI mod-specific
-# Ignore packaged releases (zipped for upload)
+# Packaged releases (zipped for upload)
 *.zip
 
-# Ignore SMAPI-generated config files (keep local, not in git)
+# SMAPI auto-generated config (don’t commit personal settings)
 config.json
+
+# Always keep mod metadata
+!manifest.json
