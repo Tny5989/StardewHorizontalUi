@@ -1,0 +1,77 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Project
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Project
+        run: dotnet build --configuration Release
+
+      - name: Extract Mod Info
+        id: get_version
+        shell: pwsh
+        run: |
+          $json = Get-Content "manifest.json" | ConvertFrom-Json
+          echo "mod_version=$($json.Version)" >> $GITHUB_ENV
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mod-archive
+          path: bin/Release/net6.0/*.zip
+
+    outputs:
+      mod_version: ${{ env.mod_version }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: mod-archive
+          path: .
+
+      - name: Generate Changes
+        id: changelog
+        run: |
+          git fetch --tags
+          last_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -z "$last_tag" ]; then
+            log=$(git log --pretty=format:'- %s')
+          else
+            log=$(git log $last_tag..HEAD --pretty=format:'- %s')
+          fi
+          echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+          echo "$log" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ needs.build.outputs.mod_version }}
+          files: "*.zip"
+          body: ${{ env.CHANGELOG }}
+          overwrite: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
