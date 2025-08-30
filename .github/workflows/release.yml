@@ -23,7 +23,7 @@ jobs:
         run: dotnet restore
 
       - name: Build Project
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release /p:SkipGameCheck=true
 
       - name: Extract Mod Info
         id: get_version
