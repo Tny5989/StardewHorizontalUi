@@ -15,7 +15,7 @@ namespace VisibleStamina.Configuration
     {
         public int HorizontalMargin { get; set; } = 16;
         public int VerticalMargin { get; set; } = 8;
-        public int Spacing { get; set; } = 56;
+        public int Spacing { get; set; } = 16;
         public int BleedHealth { get; set; } = 10;
         public int SweatEnergy { get; set; } = 20;
         public int BarFillYOffset { get; set; } = 12;
