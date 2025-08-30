@@ -21,10 +21,9 @@ jobs:
 
       - name: Extract Mod Info
         id: get_version
-        shell: pwsh
         run: |
-          $json = Get-Content "manifest.json" | ConvertFrom-Json
-          echo "mod_version=$($json.Version)" >> $GITHUB_ENV
+          mod_version=$(jq -r '.Version' manifest.json)
+          echo "mod_version=$mod_version" >> $GITHUB_ENV
 
       - name: Generate Changes
         id: changelog
