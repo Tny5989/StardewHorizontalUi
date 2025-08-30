@@ -13,6 +13,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: List Files
+        run: ls -R
 
       - name: Extract Mod Info
         id: get_version
