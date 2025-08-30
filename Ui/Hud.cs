@@ -39,7 +39,7 @@ namespace VisibleStamina.Ui
             EnergyBar.Position = position + GetShakeOffset(Game1.staminaShakeTimer > 0);
             EnergyBar.Update();
 
-            position = new(titleSafeArea.Right - EnergyBar.Size.X - Config.HorizontalMargin, titleSafeArea.Bottom - EnergyBar.Size.Y - Config.VerticalMargin - Config.Spacing);
+            position = new(titleSafeArea.Right - HealthBar.Size.X - Config.HorizontalMargin, titleSafeArea.Bottom - EnergyBar.Size.Y - HealthBar.Size.Y - Config.VerticalMargin - Config.Spacing);
             HealthBar.Position = position + GetShakeOffset(Game1.hitShakeTimer > 0);
             HealthBar.Visible = Game1.showingHealth || Game1.showingHealthBar || Config.AlwaysShowHealthBar;
             HealthBar.Update();
