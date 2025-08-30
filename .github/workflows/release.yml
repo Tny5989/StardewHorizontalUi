@@ -7,23 +7,12 @@ on:
   workflow_dispatch:
     
 jobs:
-  build:
-    runs-on: windows-latest
+  release:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup Project
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '6.0.x'
-
-      - name: Restore Dependencies
-        run: dotnet restore
-
-      - name: Build Project
-        run: dotnet build --configuration Release /p:SkipGameCheck=true
 
       - name: Extract Mod Info
         id: get_version
@@ -31,26 +20,6 @@ jobs:
         run: |
           $json = Get-Content "manifest.json" | ConvertFrom-Json
           echo "mod_version=$($json.Version)" >> $GITHUB_ENV
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: mod-archive
-          path: bin/Release/net6.0/*.zip
-
-    outputs:
-      mod_version: ${{ env.mod_version }}
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: mod-archive
-          path: .
 
       - name: Generate Changes
         id: changelog
@@ -69,9 +38,9 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ needs.build.outputs.mod_version }}
-          files: "*.zip"
+          tag_name: v${{ env.mod_version }}
           body: ${{ env.CHANGELOG }}
-          overwrite: true
+          draft: true
+          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
