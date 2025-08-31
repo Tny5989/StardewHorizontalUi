@@ -1,7 +1,7 @@
 {
   "Name": "Horizontal UI",
   "Author": "Tny5989",
-  "Version": "0.0.3",
+  "Version": "0.0.4",
   "Description": "Horizontal Health and Energy Bars",
   "UniqueID": "Tny5989.HorizontalUi",
   "EntryDll": "HorizontalUi.dll",
