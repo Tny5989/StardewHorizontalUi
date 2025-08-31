@@ -22,7 +22,7 @@ jobs:
       - name: Extract Mod Info
         id: get_version
         run: |
-          mod_version=$(jq -r '.Version' manifest.json)
+          mod_version=$(jq -r '.Version' HorizontalUi/manifest.json)
           echo "mod_version=$mod_version" >> $GITHUB_ENV
 
       - name: Generate Changes
