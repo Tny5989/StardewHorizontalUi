@@ -29,6 +29,7 @@ namespace VisibleStamina.Ui.Widgets
             var lowHealth = (Game1.player.health <= Config.BleedHealth);
             var noEvents = (Game1.CurrentEvent == null);
             var noScreenChange = (Game1.fadeToBlackAlpha <= 0f);
+
             if (Visible && timerTick && lowHealth && noEvents && noScreenChange)
             {
                 for (var i = 0; i < 3; ++i)

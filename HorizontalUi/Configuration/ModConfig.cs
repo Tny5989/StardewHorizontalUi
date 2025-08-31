@@ -22,6 +22,19 @@ namespace VisibleStamina.Configuration
         public int BarFillSizeOffstet { get; set; } = 24;
         public int FillHighlightWidth { get; set; } = 4;
         public bool AlwaysShowHealthBar { get; set; } = false;
+
+        public void Reset()
+        {
+            HorizontalMargin = 16;
+            VerticalMargin = 8;
+            Spacing = 16;
+            BleedHealth = 10;
+            SweatEnergy = 20;
+            BarFillYOffset = 12;
+            BarFillSizeOffstet = 24;
+            FillHighlightWidth = 4;
+            AlwaysShowHealthBar = false;
+        }
     }
 
     /// <summary>The API which lets other mods add a config UI through Generic Mod Config Menu.</summary>
