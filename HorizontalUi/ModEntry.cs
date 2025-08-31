@@ -54,7 +54,7 @@ namespace VisibleStamina
 
             gmcm.Register(
                 mod: this.ModManifest,
-                reset: () => this.Config = new ModConfig(),
+                reset: () => this.Config.Reset(),
                 save: () => this.Helper.WriteConfig(this.Config));
 
             gmcm.AddSectionTitle(
